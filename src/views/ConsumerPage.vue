@@ -10,7 +10,7 @@
       <el-table-column label="ID" prop="id" width="50" align="center"></el-table-column>
       <el-table-column label="用户头像" width="102" align="center">
         <template v-slot="scope">
-          <img :src="attachImageUrl(scope.row.avator)" style="width: 80px" />
+          <img :src="attachImageUrl(scope.row.avator)" style="width: 80px"/>
         </template>
       </el-table-column>
       <el-table-column label="用户名" prop="username" width="80" align="center"></el-table-column>
@@ -63,8 +63,8 @@ import mixin from "@/mixins/mixin";
 import {RouterName} from "@/enums";
 import {getBirth} from "@/utils";
 
-const { proxy } = getCurrentInstance();
-const { changeSex, routerManager } = mixin();
+const {proxy} = getCurrentInstance();
+const {changeSex, routerManager} = mixin();
 
 const tableData = ref([]); // 记录歌曲，用于显示
 const tempDate = ref([]); // 记录歌曲，用于搜索时能临时记录一份歌曲列表
@@ -101,6 +101,7 @@ async function getData() {
   tempDate.value = result.data;
   currentPage.value = 1;
 }
+
 // 获取当前页
 function handleCurrentChange(val) {
   currentPage.value = val;
@@ -121,7 +122,7 @@ function goCollectPage(id) {
     },
   ]);
   proxy.$store.commit("setBreadcrumbList", breadcrumbList);
-  routerManager(RouterName.Collect, { path: RouterName.Collect, query: { id } });
+  routerManager(RouterName.Collect, {path: RouterName.Collect, query: {id}});
 }
 
 /**
@@ -140,13 +141,16 @@ async function confirm() {
   if (result) getData();
   delVisible.value = false;
 }
+
 function deleteRow(id) {
   idx.value = id;
   delVisible.value = true;
 }
+
 function handleSelectionChange(val) {
   multipleSelection.value = val;
 }
+
 function deleteAll() {
   for (let item of multipleSelection.value) {
     deleteRow(item.id);
@@ -154,7 +158,8 @@ function deleteAll() {
   }
   multipleSelection.value = [];
 }
-function attachImageUrl(url){
+
+function attachImageUrl(url) {
   api.attachImageUrl(url)
 }
 

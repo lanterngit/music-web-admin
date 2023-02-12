@@ -72,5 +72,9 @@ const api = {
     setListSong: ({songId,songListId}) => post(`listSong/add`, {songId,songListId}),
     // 删除歌单里的歌曲
     deleteListSong: (songId) => get(`listSong/delete?songId=${songId}`),
+    // 返回的指定用户ID收藏列表
+    getCollectionOfUser: (userId) => get(`collection/detail?userId=${userId}`),
+    // 删除收藏的歌曲
+    deleteCollection: (userId, songId) => deletes(`collection/delete?userId=${userId}&&songId=${songId}`),
 }
 export default api

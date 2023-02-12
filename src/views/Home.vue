@@ -4,11 +4,11 @@
   <div class="content-box" :class="{ 'content-collapse': collapse }">
     <router-view></router-view>
   </div>
-<!--  <cxk-audio/>-->
+  <!--  <cxk-audio/>-->
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import {ref} from "vue";
 import CxkHeader from "@/components/layouts/CxkHeader.vue"
 import CxkAside from "@/components/layouts/CxkAside.vue"
 import CxkAudio from "@/components/layouts/CxkAudio.vue"

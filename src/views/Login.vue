@@ -3,11 +3,12 @@
     <div class="login-title">{{ musicName }}</div>
     <div class="login">
       <el-form :model="loginForm" :rules="rules" class="demo-ruleForm">
-        <el-form-item  prop="username">
+        <el-form-item prop="username">
           <el-input v-model="loginForm.username" placeholder="请输入用户名" type="text" autocomplete="off"/>
         </el-form-item>
-        <el-form-item  prop="password">
-          <el-input v-model="loginForm.password" type="password" placeholder="请输入密码" autocomplete="off" @keyup.enter="submitForm"/>
+        <el-form-item prop="password">
+          <el-input v-model="loginForm.password" type="password" placeholder="请输入密码" autocomplete="off"
+                    @keyup.enter="submitForm"/>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" style="width: 100%" @click="submitForm">登录</el-button>

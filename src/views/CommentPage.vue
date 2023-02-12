@@ -28,12 +28,12 @@
 </template>
 
 <script lang="ts" setup>
-import { getCurrentInstance, watch, ref, computed } from "vue";
-import { useStore } from "vuex";
-import  api  from "@/api";
+import {getCurrentInstance, watch, ref, computed} from "vue";
+import {useStore} from "vuex";
+import api from "@/api";
 import CxkDelDialog from "@/components/dialog/CxkDelDialog.vue";
 
-const { proxy } = getCurrentInstance();
+const {proxy} = getCurrentInstance();
 const store = useStore();
 
 const tableData = ref([]); // 记录歌曲，用于显示
@@ -73,6 +73,7 @@ function getData() {
     }
   });
 }
+
 async function getUsers(id, item) {
   const result = (await api.getUserOfId(id)) as ResponseBody;
   item.username = result.data[0].username;
@@ -97,13 +98,16 @@ async function confirm() {
   if (result.success) getData();
   delVisible.value = false;
 }
+
 function deleteRow(id) {
   idx.value = id;
   delVisible.value = true;
 }
+
 function handleSelectionChange(val) {
   multipleSelection.value = val;
 }
+
 function deleteAll() {
   for (let item of multipleSelection.value) {
     deleteRow(item.id);

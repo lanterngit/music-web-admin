@@ -17,7 +17,7 @@
       <el-table-column label="歌手图片" width="110" align="center">
         <template v-slot="scope">
           <div style="width: 80px; height: 80px; overflow: hidden">
-            <img :src="attachImageUrl(scope.row.pic)" style="width: 100%" />
+            <img :src="attachImageUrl(scope.row.pic)" style="width: 100%"/>
           </div>
           <div class="play" @click="setSongUrl(scope.row)">
             <svg class="icon" aria-hidden="true">
@@ -39,11 +39,13 @@
       </el-table-column>
       <el-table-column label="资源更新" width="120" align="center">
         <template v-slot="scope">
-          <el-upload :action="updateSongImg(scope.row.id)" :show-file-list="false" :on-success="handleImgSuccess" :before-upload="beforeImgUpload">
+          <el-upload :action="updateSongImg(scope.row.id)" :show-file-list="false" :on-success="handleImgSuccess"
+                     :before-upload="beforeImgUpload">
             <el-button>更新图片</el-button>
           </el-upload>
-          <br />
-          <el-upload :action="updateSongUrl(scope.row.id)" :show-file-list="false" :on-success="handleSongSuccess" :before-upload="beforeSongUpload">
+          <br/>
+          <el-upload :action="updateSongUrl(scope.row.id)" :show-file-list="false" :on-success="handleSongSuccess"
+                     :before-upload="beforeSongUpload">
             <el-button>更新歌曲</el-button>
           </el-upload>
         </template>
@@ -85,7 +87,7 @@
         <el-input type="textarea" name="lyric" v-model="registerForm.lyric"></el-input>
       </el-form-item>
       <el-form-item label="歌曲上传">
-        <input type="file" name="file" />
+        <input type="file" name="file"/>
       </el-form-item>
     </el-form>
     <template #footer>
@@ -122,16 +124,16 @@
 </template>
 
 <script lang="ts" setup>
-import {  getCurrentInstance, watch, ref, reactive, computed } from "vue";
-import { useStore } from "vuex";
+import {getCurrentInstance, watch, ref, reactive, computed} from "vue";
+import {useStore} from "vuex";
 import mixin from "@/mixins/mixin";
-import { Icon, RouterName } from "@/enums";
+import {Icon, RouterName} from "@/enums";
 import api from "@/api";
-import { parseLyric } from "@/utils";
+import {parseLyric} from "@/utils";
 import CxkDelDialog from "@/components/dialog/CxkDelDialog.vue";
 
-const { proxy } = getCurrentInstance();
-const { routerManager, beforeImgUpload, beforeSongUpload } = mixin();
+const {proxy} = getCurrentInstance();
+const {routerManager, beforeImgUpload, beforeSongUpload} = mixin();
 const store = useStore();
 
 const tableData = ref([]); // 记录歌曲，用于显示
@@ -180,6 +182,7 @@ async function getData() {
   tempDate.value = result.data;
   currentPage.value = 1;
 }
+
 function setSongUrl(row) {
   proxy.$store.commit("setUrl", row.url);
   toggle.value = row.name;
@@ -189,17 +192,21 @@ function setSongUrl(row) {
     proxy.$store.commit("setIsPlay", true);
   }
 }
+
 // 更新歌曲图片
 function updateSongImg(id) {
   return api.updateSongImg(id);
 }
+
 function updateSongUrl(id) {
   return api.updateSongUrl(id);
 }
+
 // 获取当前页
 function handleCurrentChange(val) {
   currentPage.value = val;
 }
+
 function handleSongSuccess(res) {
   (proxy as any).$message({
     message: res.message,
@@ -207,6 +214,7 @@ function handleSongSuccess(res) {
   });
   if (res.success) getData();
 }
+
 // 更新图片
 function handleImgSuccess(res, file) {
   (proxy as any).$message({
@@ -239,7 +247,7 @@ function goCommentPage(id) {
     },
   ]);
   proxy.$store.commit("setBreadcrumbList", breadcrumbList);
-  routerManager(RouterName.Comment, { path: RouterName.Comment, query: { id, type: 0 } });
+  routerManager(RouterName.Comment, {path: RouterName.Comment, query: {id, type: 0}});
 }
 
 /**
@@ -310,13 +318,14 @@ function editRow(row) {
   editForm.url = row.url;
   editVisible.value = true;
 }
+
 async function saveEdit() {
   let id = editForm.id;
   let singerId = editForm.singerId;
   let name = editForm.name;
   let introduction = editForm.introduction;
   let lyric = editForm.lyric;
-  const result = (await api.updateSongMsg({id,singerId,name,introduction,lyric})) as ResponseBody;
+  const result = (await api.updateSongMsg({id, singerId, name, introduction, lyric})) as ResponseBody;
   (proxy as any).$message({
     message: result.message,
     type: result.type,
@@ -341,13 +350,16 @@ async function confirm() {
   if (result.success) getData();
   delVisible.value = false;
 }
+
 function deleteRow(id) {
   idx.value = id;
   delVisible.value = true;
 }
+
 function handleSelectionChange(val) {
   multipleSelection.value = val;
 }
+
 function deleteAll() {
   for (let item of multipleSelection.value) {
     deleteRow(item.id);
@@ -355,7 +367,8 @@ function deleteAll() {
   }
   multipleSelection.value = [];
 }
-function attachImageUrl(url){
+
+function attachImageUrl(url) {
   api.attachImageUrl(url)
 }
 

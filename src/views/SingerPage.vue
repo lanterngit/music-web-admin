@@ -11,9 +11,10 @@
       <el-table-column label="歌手图片" prop="pic" width="110" align="center">
         <template v-slot="scope">
           <div class="singer-img">
-            <img :src="attachImageUrl(scope.row.pic)" style="width: 100%" />
+            <img :src="attachImageUrl(scope.row.pic)" style="width: 100%"/>
           </div>
-          <el-upload :action="uploadUrl(scope.row.id)" :show-file-list="false" :on-success="handleImgSuccess" :before-upload="beforeImgUpload">
+          <el-upload :action="uploadUrl(scope.row.id)" :show-file-list="false" :on-success="handleImgSuccess"
+                     :before-upload="beforeImgUpload">
             <el-button>更新图片</el-button>
           </el-upload>
         </template>
@@ -133,15 +134,15 @@
 
 
 <script lang="ts" setup>
-import {  getCurrentInstance, watch, ref, reactive, computed } from "vue";
+import {getCurrentInstance, watch, ref, reactive, computed} from "vue";
 import mixin from "@/mixins/mixin";
 import CxkDelDialog from "@/components/dialog/CxkDelDialog.vue";
-import  api  from "@/api/index";
-import { RouterName } from "@/enums";
-import { getBirth } from "@/utils";
+import api from "@/api/index";
+import {RouterName} from "@/enums";
+import {getBirth} from "@/utils";
 
-const { proxy } = getCurrentInstance();
-const { changeSex, routerManager, beforeImgUpload } = mixin();
+const {proxy} = getCurrentInstance();
+const {changeSex, routerManager, beforeImgUpload} = mixin();
 
 const tableData = ref([]); // 记录歌曲，用于显示
 const tempDate = ref([]); // 记录歌曲，用于搜索时能临时记录一份歌曲列表
@@ -177,10 +178,12 @@ async function getData() {
   tempDate.value = result.data;
   currentPage.value = 1;
 }
+
 // 获取当前页
 function handleCurrentChange(val) {
   currentPage.value = val;
 }
+
 function uploadUrl(id) {
   return api.attachImageUrl(`/singer/avatar/update?id=${id}`);
 }
@@ -202,7 +205,7 @@ function goSongPage(row) {
   proxy.$store.commit("setBreadcrumbList", breadcrumbList);
   routerManager(RouterName.Song, {
     path: RouterName.Song,
-    query: { id: row.id, name: row.name },
+    query: {id: row.id, name: row.name},
   });
 }
 
@@ -218,8 +221,8 @@ const registerForm = reactive({
   introduction: "",
 });
 const singerRule = reactive({
-  name: [{ required: true, trigger: "change" }],
-  sex: [{ required: true, trigger: "change" }],
+  name: [{required: true, trigger: "change"}],
+  sex: [{required: true, trigger: "change"}],
 });
 
 async function addsinger() {
@@ -231,7 +234,7 @@ async function addsinger() {
   let location = registerForm.location;
   let introduction = registerForm.introduction;
 
-  const result = (await api.setSinger({name,sex,birth,location,introduction})) as ResponseBody;
+  const result = (await api.setSinger({name, sex, birth, location, introduction})) as ResponseBody;
   (proxy as any).$message({
     message: result.message,
     type: result.type,
@@ -272,6 +275,7 @@ function editRow(row) {
   editForm.location = row.location;
   editForm.introduction = row.introduction;
 }
+
 async function saveEdit() {
   try {
     let datetime = getBirth(new Date(editForm.birth));
@@ -283,7 +287,7 @@ async function saveEdit() {
     let location = editForm.location;
     let introduction = editForm.introduction;
 
-    const result = (await api.updateSingerMsg({id,name,sex,birth,location,introduction})) as ResponseBody;
+    const result = (await api.updateSingerMsg({id, name, sex, birth, location, introduction})) as ResponseBody;
     (proxy as any).$message({
       message: result.message,
       type: result.type,
@@ -295,6 +299,7 @@ async function saveEdit() {
     console.error(error);
   }
 }
+
 function handleImgSuccess(response, file) {
   (proxy as any).$message({
     message: response.message,
@@ -320,13 +325,16 @@ async function confirm() {
   if (result.success) getData();
   delVisible.value = false;
 }
+
 function deleteRow(id) {
   idx.value = id;
   delVisible.value = true;
 }
+
 function handleSelectionChange(val) {
   multipleSelection.value = val;
 }
+
 function deleteAll() {
   for (let item of multipleSelection.value) {
     deleteRow(item.id);
@@ -334,7 +342,8 @@ function deleteAll() {
   }
   multipleSelection.value = [];
 }
-function attachImageUrl(url){
+
+function attachImageUrl(url) {
   api.attachImageUrl(url)
 }
 

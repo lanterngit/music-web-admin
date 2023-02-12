@@ -1,4 +1,4 @@
-import {get, post} from "@/api/request";
+import {deletes, get, post} from "@/api/request";
 
 const api = {
     //获取图片信息
@@ -42,5 +42,25 @@ const api = {
     }),
     // 删除歌手
     deleteSinger: (id) => deletes(`singer/delete?id=${id}`),
+    // 添加歌单
+    setSongList: ({title, introduction, style}) => post(`songList/add`, {title, introduction, style}),
+    // 更新歌单信息
+    updateSongListMsg: ({id, title, introduction, style}) => post(`songList/update`, {id, title, introduction, style}),
+    // 删除歌单
+    deleteSongList: (id) => get(`songList/delete?id=${id}`),
+    // 返回指定歌手ID的歌曲
+    getSongOfSingerId: (id) => get(`song/singer/detail?singerId=${id}`),
+    // 更新歌曲信息
+    updateSongMsg: ({id, singerId, name, introduction, lyric}) => post(`song/update`, {
+        id,
+        singerId,
+        name,
+        introduction,
+        lyric
+    }),
+    updateSongUrl: (id) => `http://106.55.181.80:8888/song/url/update?id=${id}`,
+    updateSongImg: (id) => `http://106.55.181.80:8888/song/img/update?id=${id}`,
+    // 删除歌曲
+    deleteSong: (id) => deletes(`song/delete?id=${id}`),
 }
 export default api

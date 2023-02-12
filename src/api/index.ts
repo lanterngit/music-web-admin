@@ -23,5 +23,24 @@ const api = {
     deleteComment: (id: string | number) => get(`comment/delete?id=${id}`),
     // 删除用户
     deleteUser: (id: string | number) => get(`user/delete?id=${id}`),
+    // 更新歌手信息
+    updateSingerMsg: ({id, name, sex, birth, location, introduction}) => post(`singer/update`, {
+        id,
+        name,
+        sex,
+        birth,
+        location,
+        introduction
+    }),
+    // 添加歌手
+    setSinger: ({name, sex, birth, location, introduction}) => post(`singer/add`, {
+        name,
+        sex,
+        birth,
+        location,
+        introduction
+    }),
+    // 删除歌手
+    deleteSinger: (id) => deletes(`singer/delete?id=${id}`),
 }
 export default api

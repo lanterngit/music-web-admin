@@ -4,7 +4,7 @@
         class="sidebar-el-menu"
         background-color="#ffffff"
         active-text-color="#30a4fc"
-        default-active="2"
+        default-active="info"
         router
         :collapse="collapse"
     >

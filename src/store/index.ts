@@ -1,17 +1,37 @@
-import {createStore} from "vuex";
+import {createStore} from 'vuex'
 
 const state = {
+    userPic: "/img/avatorImages/user.jpg",
+    isPlay: false,
     url: '',
-    isPlay: false
+    id: '',
+    breadcrumbList: []
 }
 const getters = {
+    userPic: state => state.userPic,
+    isPlay: state => state.isPlay,
     url: state => state.url,
-    isPlay: state => state.isPlay
+    id: state => state.id,
+    breadcrumbList: state => state.breadcrumbList
 }
 const mutations = {
-    SET_URL: (state,url) => state.url = url,
-    SET_IS_PLAY: (state,isPlay) => state.isPlay = isPlay
+    setUserPic: (state, userPic) => {
+        state.userPic = userPic
+    },
+    setIsPlay: (state, isPlay) => {
+        state.isPlay = isPlay
+    },
+    setUrl: (state, url) => {
+        state.url = url
+    },
+    setId: (state, id) => {
+        state.id = id
+    },
+    setBreadcrumbList: (state, breadcrumbList) => {
+        state.breadcrumbList = breadcrumbList
+    }
 }
+
 export default createStore({
     state,
     getters,

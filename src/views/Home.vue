@@ -4,7 +4,7 @@
   <div class="content-box" :class="{ 'content-collapse': collapse }">
     <router-view></router-view>
   </div>
-  <cxk-audio/>
+<!--  <cxk-audio/>-->
 </template>
 
 <script lang="ts" setup>

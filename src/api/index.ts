@@ -13,5 +13,15 @@ const api = {
     getAllSong: () => get(`song`),
     // 获取全部歌单
     getSongList: () => get(`songList`),
+    // 返回指定ID的用户
+    getUserOfId: (id: string | number) => get(`user/detail?id=${id}`),
+    // 获得指定歌曲ID的评论列表
+    getCommentOfSongId: (songId: string | number) => get(`comment/song/detail?songId=${songId}`),
+    // 获得指定歌单ID的评论列表
+    getCommentOfSongListId: (songListId: string | number) => get(`comment/songList/detail?songListId=${songListId}`),
+    // 删除评论
+    deleteComment: (id: string | number) => get(`comment/delete?id=${id}`),
+    // 删除用户
+    deleteUser: (id: string | number) => get(`user/delete?id=${id}`),
 }
 export default api

@@ -8,4 +8,3 @@ import store from "@/store";
 
 
 createApp(App).use(ElementPlus).use(router).use(store).mount('#app')
-console.log("base_url>>>>>>>>",import.meta.env.VITE_BASE_URL)

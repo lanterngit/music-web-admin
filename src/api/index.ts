@@ -62,5 +62,15 @@ const api = {
     updateSongImg: (id) => `http://106.55.181.80:8888/song/img/update?id=${id}`,
     // 删除歌曲
     deleteSong: (id) => deletes(`song/delete?id=${id}`),
+    // 返回歌单里指定歌单ID的歌曲
+    getListSongOfSongId: (songListId) => get(`listSong/detail?songListId=${songListId}`),
+    // 返回的指定用户ID收藏列表
+    getSongOfId: (id) => get(`song/detail?id=${id}`),
+    // 返回指定歌手名的歌曲
+    getSongOfSingerName: (id) => get(`song/singerName/detail?name=${id}`),
+    // 给歌单添加歌曲
+    setListSong: ({songId,songListId}) => post(`listSong/add`, {songId,songListId}),
+    // 删除歌单里的歌曲
+    deleteListSong: (songId) => get(`listSong/delete?songId=${songId}`),
 }
 export default api

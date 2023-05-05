@@ -160,8 +160,7 @@ function deleteAll() {
 }
 
 function attachImageUrl(url:string) {
-  api.attachImageUrl(url)
-    console.log('url>>>>>',api.attachImageUrl(url))
+  return  api.attachImageUrl(url)
 }
 
 

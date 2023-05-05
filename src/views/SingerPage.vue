@@ -343,8 +343,8 @@ function deleteAll() {
   multipleSelection.value = [];
 }
 
-function attachImageUrl(url) {
-  api.attachImageUrl(url)
+function attachImageUrl(url:string) {
+  return api.attachImageUrl(url)
 }
 
 </script>

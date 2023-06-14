@@ -76,5 +76,6 @@ const api = {
     getCollectionOfUser: (userId) => get(`collection/detail?userId=${userId}`),
     // 删除收藏的歌曲
     deleteCollection: (userId, songId) => deletes(`collection/delete?userId=${userId}&&songId=${songId}`),
+    getSchoolSong: () => get(`schoolSong`),
 }
 export default api

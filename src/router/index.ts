@@ -17,6 +17,11 @@ const routes: Array<RouteRecordRaw> = [
                 meta: {title: 'Song'}
             },
             {
+                path: '/songManagement',
+                component: () => import('@/views/songManagement.vue'),
+                meta: {title: 'Song'}
+            },
+            {
                 path: '/singer',
                 component: () => import('@/views/SingerPage.vue'),
                 meta: {title: 'Singer'}
